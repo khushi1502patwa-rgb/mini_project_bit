@@ -1,0 +1,1689 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#0077b6">
+  <meta name="description" content="One Stop Hub - All-in-one student portal for notes, resume building, events, and more">
+  <link rel="manifest" href="#" id="manifest-placeholder">
+  <title>One Stop Hub | Student Portal</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --primary: #0077b6;
+      --primary-dark: #023e8a;
+      --primary-light: #48cae4;
+      --accent: #90e0ef;
+      --success: #06d6a0;
+      --warning: #ffd60a;
+      --danger: #ef476f;
+      --dark: #023e8a;
+      --light-bg: #f8f9fa;
+      --card-bg: #ffffff;
+      --text: #333;
+      --text-light: #6c757d;
+      --border: #dee2e6;
+      --shadow: rgba(0, 0, 0, 0.1);
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--light-bg);
+      color: var(--text);
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    /* Header & Navigation */
+    .app-header {
+      background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+      color: white;
+      padding: 1rem 0;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      box-shadow: 0 4px 12px var(--shadow);
+    }
+
+    .header-content {
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 0 1.5rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .app-logo {
+      font-size: 1.5rem;
+      font-weight: 800;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .nav-menu {
+      display: flex;
+      gap: 1rem;
+      align-items: center;
+    }
+
+    .nav-btn {
+      background: rgba(255, 255, 255, 0.1);
+      border: none;
+      color: white;
+      padding: 0.5rem 1rem;
+      border-radius: 8px;
+      cursor: pointer;
+      font-weight: 500;
+      transition: all 0.3s;
+    }
+
+    .nav-btn:hover {
+      background: rgba(255, 255, 255, 0.2);
+      transform: translateY(-2px);
+    }
+
+    .menu-toggle {
+      display: none;
+      background: none;
+      border: none;
+      color: white;
+      font-size: 1.5rem;
+      cursor: pointer;
+    }
+
+    /* Main Container */
+    .container {
+      max-width: 1400px;
+      margin: 2rem auto;
+      padding: 0 1.5rem;
+    }
+
+    /* Auth Screen */
+    .auth-container {
+      max-width: 450px;
+      margin: 4rem auto;
+      background: var(--card-bg);
+      padding: 2.5rem;
+      border-radius: 16px;
+      box-shadow: 0 8px 24px var(--shadow);
+    }
+
+    .auth-header {
+      text-align: center;
+      margin-bottom: 2rem;
+    }
+
+    .auth-header h2 {
+      color: var(--primary);
+      font-size: 2rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .form-group {
+      margin-bottom: 1.5rem;
+    }
+
+    .form-group label {
+      display: block;
+      margin-bottom: 0.5rem;
+      font-weight: 600;
+      color: var(--text);
+    }
+
+    .form-input {
+      width: 100%;
+      padding: 0.75rem 1rem;
+      border: 2px solid var(--border);
+      border-radius: 8px;
+      font-size: 1rem;
+      transition: all 0.3s;
+    }
+
+    .form-input:focus {
+      outline: none;
+      border-color: var(--primary);
+      box-shadow: 0 0 0 3px rgba(0, 119, 182, 0.1);
+    }
+
+    .btn {
+      padding: 0.75rem 1.5rem;
+      border: none;
+      border-radius: 8px;
+      font-size: 1rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+    }
+
+    .btn-primary {
+      background: var(--primary);
+      color: white;
+      width: 100%;
+    }
+
+    .btn-primary:hover {
+      background: var(--primary-dark);
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px var(--shadow);
+    }
+
+    .btn-secondary {
+      background: var(--card-bg);
+      color: var(--text);
+      border: 2px solid var(--border);
+      width: 100%;
+    }
+
+    .btn-secondary:hover {
+      background: var(--light-bg);
+    }
+
+    .divider {
+      text-align: center;
+      margin: 1.5rem 0;
+      position: relative;
+    }
+
+    .divider::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 50%;
+      width: 45%;
+      height: 1px;
+      background: var(--border);
+    }
+
+    .divider::after {
+      content: '';
+      position: absolute;
+      right: 0;
+      top: 50%;
+      width: 45%;
+      height: 1px;
+      background: var(--border);
+    }
+
+    /* Dashboard Grid */
+    .dashboard-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.5rem;
+      margin-top: 2rem;
+    }
+
+    .module-card {
+      background: var(--card-bg);
+      padding: 2rem;
+      border-radius: 16px;
+      box-shadow: 0 4px 12px var(--shadow);
+      cursor: pointer;
+      transition: all 0.3s;
+      border-left: 4px solid var(--primary);
+    }
+
+    .module-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 24px rgba(0, 119, 182, 0.2);
+    }
+
+    .module-icon {
+      font-size: 2.5rem;
+      margin-bottom: 1rem;
+    }
+
+    .module-card h3 {
+      color: var(--primary);
+      margin-bottom: 0.5rem;
+      font-size: 1.3rem;
+    }
+
+    .module-card p {
+      color: var(--text-light);
+      font-size: 0.95rem;
+    }
+
+    /* Module Container */
+    .module-container {
+      background: var(--card-bg);
+      border-radius: 16px;
+      padding: 2rem;
+      box-shadow: 0 4px 12px var(--shadow);
+      margin-top: 2rem;
+    }
+
+    .module-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 2rem;
+      padding-bottom: 1rem;
+      border-bottom: 2px solid var(--border);
+    }
+
+    .module-title {
+      font-size: 1.8rem;
+      color: var(--primary);
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .btn-back {
+      background: var(--light-bg);
+      color: var(--text);
+      padding: 0.5rem 1rem;
+    }
+
+    .btn-back:hover {
+      background: var(--border);
+    }
+
+    /* Resume Builder */
+    .resume-form {
+      display: grid;
+      gap: 1.5rem;
+    }
+
+    .form-section {
+      background: var(--light-bg);
+      padding: 1.5rem;
+      border-radius: 12px;
+      border-left: 4px solid var(--primary);
+    }
+
+    .form-section h4 {
+      color: var(--primary);
+      margin-bottom: 1rem;
+      font-size: 1.2rem;
+    }
+
+    .form-row {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 1rem;
+    }
+
+    .voice-input-btn {
+      position: absolute;
+      right: 10px;
+      top: 50%;
+      transform: translateY(-50%);
+      background: var(--primary);
+      color: white;
+      border: none;
+      padding: 0.5rem;
+      border-radius: 50%;
+      cursor: pointer;
+      width: 36px;
+      height: 36px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .voice-input-btn.recording {
+      background: var(--danger);
+      animation: pulse 1s infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.5; }
+    }
+
+    .resume-preview {
+      background: white;
+      padding: 2rem;
+      border: 2px solid var(--border);
+      border-radius: 12px;
+      margin-top: 2rem;
+      box-shadow: 0 4px 12px var(--shadow);
+    }
+
+    /* Notes & PYQ */
+    .notes-toolbar {
+      display: flex;
+      gap: 1rem;
+      margin-bottom: 1.5rem;
+      flex-wrap: wrap;
+    }
+
+    .search-box {
+      flex: 1;
+      min-width: 250px;
+      position: relative;
+    }
+
+    .search-box input {
+      width: 100%;
+      padding: 0.75rem 1rem 0.75rem 3rem;
+      border: 2px solid var(--border);
+      border-radius: 8px;
+      font-size: 1rem;
+    }
+
+    .search-icon {
+      position: absolute;
+      left: 1rem;
+      top: 50%;
+      transform: translateY(-50%);
+      color: var(--text-light);
+    }
+
+    .filter-chips {
+      display: flex;
+      gap: 0.5rem;
+      flex-wrap: wrap;
+    }
+
+    .chip {
+      padding: 0.5rem 1rem;
+      background: var(--light-bg);
+      border: 2px solid var(--border);
+      border-radius: 20px;
+      cursor: pointer;
+      transition: all 0.3s;
+      font-size: 0.9rem;
+    }
+
+    .chip.active {
+      background: var(--primary);
+      color: white;
+      border-color: var(--primary);
+    }
+
+    .notes-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 1.5rem;
+      margin-top: 1.5rem;
+    }
+
+    .note-card {
+      background: var(--card-bg);
+      padding: 1.5rem;
+      border-radius: 12px;
+      border-left: 4px solid var(--primary);
+      box-shadow: 0 2px 8px var(--shadow);
+      transition: all 0.3s;
+    }
+
+    .note-card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 4px 16px var(--shadow);
+    }
+
+    .note-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: start;
+      margin-bottom: 1rem;
+    }
+
+    .note-title {
+      font-size: 1.1rem;
+      font-weight: 600;
+      color: var(--text);
+    }
+
+    .note-actions {
+      display: flex;
+      gap: 0.5rem;
+    }
+
+    .icon-btn {
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 0.25rem;
+      color: var(--text-light);
+      transition: all 0.3s;
+    }
+
+    .icon-btn:hover {
+      color: var(--primary);
+    }
+
+    .note-content {
+      color: var(--text-light);
+      margin-bottom: 1rem;
+      line-height: 1.6;
+    }
+
+    .note-tags {
+      display: flex;
+      gap: 0.5rem;
+      flex-wrap: wrap;
+    }
+
+    .tag {
+      padding: 0.25rem 0.75rem;
+      background: var(--accent);
+      color: var(--primary-dark);
+      border-radius: 12px;
+      font-size: 0.8rem;
+      font-weight: 500;
+    }
+
+    /* Events */
+    .event-card {
+      background: var(--card-bg);
+      padding: 1.5rem;
+      border-radius: 12px;
+      border-left: 4px solid var(--success);
+      box-shadow: 0 2px 8px var(--shadow);
+      margin-bottom: 1rem;
+      display: grid;
+      grid-template-columns: auto 1fr auto;
+      gap: 1.5rem;
+      align-items: center;
+    }
+
+    .event-date {
+      text-align: center;
+      padding: 1rem;
+      background: var(--light-bg);
+      border-radius: 8px;
+      min-width: 80px;
+    }
+
+    .event-day {
+      font-size: 2rem;
+      font-weight: 800;
+      color: var(--primary);
+    }
+
+    .event-month {
+      font-size: 0.9rem;
+      color: var(--text-light);
+      text-transform: uppercase;
+    }
+
+    .event-details h4 {
+      color: var(--text);
+      margin-bottom: 0.5rem;
+    }
+
+    .event-meta {
+      display: flex;
+      gap: 1rem;
+      color: var(--text-light);
+      font-size: 0.9rem;
+    }
+
+    .event-actions {
+      display: flex;
+      gap: 0.5rem;
+    }
+
+    .btn-small {
+      padding: 0.5rem 1rem;
+      font-size: 0.9rem;
+    }
+
+    /* Health Tracker */
+    .health-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 1.5rem;
+      margin-top: 1.5rem;
+    }
+
+    .health-card {
+      background: var(--card-bg);
+      padding: 1.5rem;
+      border-radius: 12px;
+      box-shadow: 0 2px 8px var(--shadow);
+    }
+
+    .health-card h4 {
+      color: var(--primary);
+      margin-bottom: 1rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .progress-bar {
+      width: 100%;
+      height: 30px;
+      background: var(--light-bg);
+      border-radius: 15px;
+      overflow: hidden;
+      margin: 1rem 0;
+    }
+
+    .progress-fill {
+      height: 100%;
+      background: linear-gradient(90deg, var(--primary), var(--primary-light));
+      transition: width 0.3s;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-weight: 600;
+      font-size: 0.9rem;
+    }
+
+    /* Utilities */
+    .utility-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .utility-card {
+      background: var(--card-bg);
+      padding: 2rem;
+      border-radius: 12px;
+      box-shadow: 0 2px 8px var(--shadow);
+      text-align: center;
+    }
+
+    .utility-display {
+      font-size: 3rem;
+      font-weight: 800;
+      color: var(--primary);
+      margin: 1rem 0;
+      font-variant-numeric: tabular-nums;
+    }
+
+    .utility-controls {
+      display: flex;
+      gap: 0.5rem;
+      justify-content: center;
+      margin-top: 1rem;
+    }
+
+    /* Modal */
+    .modal {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.5);
+      z-index: 2000;
+      align-items: center;
+      justify-content: center;
+      padding: 1rem;
+    }
+
+    .modal.active {
+      display: flex;
+    }
+
+    .modal-content {
+      background: var(--card-bg);
+      padding: 2rem;
+      border-radius: 16px;
+      max-width: 600px;
+      width: 100%;
+      max-height: 90vh;
+      overflow-y: auto;
+      box-shadow: 0 8px 32px var(--shadow);
+    }
+
+    .modal-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 1.5rem;
+      padding-bottom: 1rem;
+      border-bottom: 2px solid var(--border);
+    }
+
+    .modal-header h3 {
+      color: var(--primary);
+      font-size: 1.5rem;
+    }
+
+    .close-modal {
+      background: none;
+      border: none;
+      font-size: 1.5rem;
+      cursor: pointer;
+      color: var(--text-light);
+    }
+
+    /* Loading & Toast */
+    .loading {
+      display: none;
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background: white;
+      padding: 2rem;
+      border-radius: 12px;
+      box-shadow: 0 8px 32px var(--shadow);
+      z-index: 3000;
+    }
+
+    .loading.active {
+      display: block;
+    }
+
+    .spinner {
+      border: 4px solid var(--light-bg);
+      border-top: 4px solid var(--primary);
+      border-radius: 50%;
+      width: 50px;
+      height: 50px;
+      animation: spin 1s linear infinite;
+      margin: 0 auto;
+    }
+
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+
+    .toast {
+      position: fixed;
+      bottom: 2rem;
+      right: 2rem;
+      background: var(--primary);
+      color: white;
+      padding: 1rem 1.5rem;
+      border-radius: 8px;
+      box-shadow: 0 4px 12px var(--shadow);
+      display: none;
+      z-index: 3000;
+      animation: slideIn 0.3s ease;
+    }
+
+    .toast.active {
+      display: block;
+    }
+
+    @keyframes slideIn {
+      from {
+        transform: translateX(400px);
+      }
+      to {
+        transform: translateX(0);
+      }
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .menu-toggle {
+        display: block;
+      }
+
+      .nav-menu {
+        position: fixed;
+        top: 60px;
+        right: -100%;
+        background: var(--primary-dark);
+        width: 250px;
+        height: calc(100vh - 60px);
+        flex-direction: column;
+        padding: 2rem 1rem;
+        transition: right 0.3s;
+        box-shadow: -4px 0 12px var(--shadow);
+      }
+
+      .nav-menu.active {
+        right: 0;
+      }
+
+      .dashboard-grid,
+      .notes-grid,
+      .health-grid,
+      .utility-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .event-card {
+        grid-template-columns: 1fr;
+      }
+
+      .form-row {
+        grid-template-columns: 1fr;
+      }
+
+      .notes-toolbar {
+        flex-direction: column;
+      }
+    }
+
+    /* Offline Indicator */
+    .offline-indicator {
+      display: none;
+      position: fixed;
+      top: 70px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: var(--danger);
+      color: white;
+      padding: 0.5rem 1.5rem;
+      border-radius: 8px;
+      z-index: 2000;
+      box-shadow: 0 4px 12px var(--shadow);
+    }
+
+    .offline-indicator.active {
+      display: block;
+    }
+
+    .hidden {
+      display: none !important;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Offline Indicator -->
+  <div class="offline-indicator" id="offlineIndicator">
+    ⚠️ You're offline. Some features may be limited.
+  </div>
+
+  <!-- Loading Spinner -->
+  <div class="loading" id="loading">
+    <div class="spinner"></div>
+    <p style="text-align: center; margin-top: 1rem; color: var(--text);">Loading...</p>
+  </div>
+
+  <!-- Toast Notification -->
+  <div class="toast" id="toast"></div>
+
+  <!-- Auth Screen -->
+  <div id="authScreen">
+    <div class="auth-container">
+      <div class="auth-header">
+        <h2>🎓 One Stop Hub</h2>
+        <p style="color: var(--text-light);">Your all-in-one student portal</p>
+      </div>
+      <form id="authForm">
+        <div class="form-group">
+          <label for="authEmail">Email</label>
+          <input type="email" id="authEmail" class="form-input" placeholder="student@example.com" required>
+        </div>
+        <div class="form-group">
+          <label for="authPassword">Password</label>
+          <input type="password" id="authPassword" class="form-input" placeholder="••••••••" required>
+        </div>
+        <button type="submit" class="btn btn-primary">Sign In</button>
+        <div class="divider">OR</div>
+        <button type="button" class="btn btn-secondary" onclick="googleSignIn()">
+          🔐 Continue with Google
+        </button>
+        <p style="text-align: center; margin-top: 1rem; color: var(--text-light); font-size: 0.9rem;">
+          Don't have an account? <a href="#" style="color: var(--primary);">Sign up</a>
+        </p>
+      </form>
+    </div>
+  </div>
+
+  <!-- Main App -->
+  <div id="mainApp" class="hidden">
+    <!-- Header -->
+    <header class="app-header">
+      <div class="header-content">
+        <div class="app-logo">
+          🎓 <span>One Stop Hub</span>
+        </div>
+        <button class="menu-toggle" onclick="toggleMenu()">☰</button>
+        <nav class="nav-menu" id="navMenu">
+          <button class="nav-btn" onclick="showDashboard()">Dashboard</button>
+          <button class="nav-btn" onclick="showProfile()">Profile</button>
+          <button class="nav-btn" onclick="logout()">Logout</button>
+        </nav>
+      </div>
+    </header>
+
+    <!-- Dashboard -->
+    <div id="dashboard" class="container">
+      <h2 class="section-title" style="text-align: center; font-size: 2rem; color: var(--primary); margin-bottom: 2rem;">
+        Welcome back, Student! 👋
+      </h2>
+      <div class="dashboard-grid">
+        <div class="module-card" onclick="showModule('resume')">
+          <div class="module-icon">📝</div>
+          <h3>Resume Builder</h3>
+          <p>Create professional resumes with voice input and PDF export</p>
+        </div>
+        <div class="module-card" onclick="showModule('notes')">
+          <div class="module-icon">📚</div>
+          <h3>Notes & PYQs</h3>
+          <p>Access and manage your study materials offline</p>
+        </div>
+        <div class="module-card" onclick="showModule('events')">
+          <div class="module-icon">🎉</div>
+          <h3>Event Management</h3>
+          <p>Track college events and RSVP with reminders</p>
+        </div>
+        <div class="module-card" onclick="showModule('health')">
+          <div class="module-icon">❤️</div>
+          <h3>Health Tracker</h3>
+          <p>Monitor diet, water intake, and stress levels</p>
+        </div>
+        <div class="module-card" onclick="showModule('utilities')">
+          <div class="module-icon">⏰</div>
+          <h3>Utilities</h3>
+          <p>Alarm, timer, calendar, and reminders</p>
+        </div>
+        <div class="module-card" onclick="showModule('timetable')">
+          <div class="module-icon">📅</div>
+          <h3>Smart Timetable</h3>
+          <p>Voice-powered schedule assistant</p>
+        </div>
+        <div class="module-card" onclick="showModule('weather')">
+          <div class="module-icon">🌤️</div>
+          <h3>Weather & Maps</h3>
+          <p>Check current weather and navigate campus</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Resume Builder Module -->
+    <div id="resumeModule" class="container hidden">
+      <div class="module-container">
+        <div class="module-header">
+          <h2 class="module-title">📝 Resume Builder</h2>
+          <button class="btn btn-back" onclick="showDashboard()">← Back</button>
+        </div>
+        <form id="resumeForm" class="resume-form">
+          <div class="form-section">
+            <h4>Personal Information</h4>
+            <div class="form-row">
+              <div class="form-group" style="position: relative;">
+                <label>Full Name</label>
+                <input type="text" id="resumeName" class="form-input" placeholder="John Doe">
+                <button type="button" class="voice-input-btn" onclick="startVoiceInput('resumeName')">🎤</button>
+              </div>
+              <div class="form-group">
+                <label>Email</label>
+                <input type="email" id="resumeEmail" class="form-input" placeholder="john@example.com">
+              </div>
+            </div>
+            <div class="form-row">
+              <div class="form-group">
+                <label>Phone</label>
+                <input type="tel" id="resumePhone" class="form-input" placeholder="+1 234 567 8900">
+              </div>
+              <div class="form-group">
+                <label>Location</label>
+                <input type="text" id="resumeLocation" class="form-input" placeholder="City, Country">
+              </div>
+            </div>
+            <div class="form-group" style="position: relative;">
+              <label>Professional Summary</label>
+              <textarea id="resumeSummary" class="form-input" rows="3" placeholder="Brief summary of your background..."></textarea>
+              <button type="button" class="voice-input-btn" onclick="startVoiceInput('resumeSummary')">🎤</button>
+            </div>
+          </div>
+
+          <div class="form-section">
+            <h4>Education</h4>
+            <div id="educationList"></div>
+            <button type="button" class="btn btn-secondary" onclick="addEducation()">+ Add Education</button>
+          </div>
+
+          <div class="form-section">
+            <h4>Experience</h4>
+            <div id="experienceList"></div>
+            <button type="button" class="btn btn-secondary" onclick="addExperience()">+ Add Experience</button>
+          </div>
+
+          <div class="form-section">
+            <h4>Skills</h4>
+            <div class="form-group">
+              <label>Add Skills (comma-separated)</label>
+              <input type="text" id="resumeSkills" class="form-input" placeholder="JavaScript, React, Node.js">
+            </div>
+          </div>
+
+          <div style="display: flex; gap: 1rem; margin-top: 1rem;">
+            <button type="button" class="btn btn-primary" onclick="generateResumePreview()">Preview Resume</button>
+            <button type="button" class="btn btn-secondary" onclick="exportResumePDF()">Export PDF</button>
+            <button type="button" class="btn btn-secondary" onclick="saveResume()">Save Draft</button>
+          </div>
+        </form>
+
+        <div id="resumePreview" class="resume-preview hidden">
+          <h3 style="color: var(--primary); margin-bottom: 1rem;">Resume Preview</h3>
+          <div id="resumePreviewContent"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Notes & PYQ Module -->
+    <div id="notesModule" class="container hidden">
+      <div class="module-container">
+        <div class="module-header">
+          <h2 class="module-title">📚 Notes & PYQs</h2>
+          <button class="btn btn-back" onclick="showDashboard()">← Back</button>
+        </div>
+
+        <div class="notes-toolbar">
+          <div class="search-box">
+            <span class="search-icon">🔍</span>
+            <input type="text" id="notesSearch" placeholder="Search notes..." oninput="filterNotes()">
+          </div>
+          <button class="btn btn-primary btn-small" onclick="openNoteModal()">+ New Note</button>
+        </div>
+
+        <div class="filter-chips" id="notesFilters">
+          <div class="chip active" data-filter="all" onclick="setNoteFilter('all')">All</div>
+          <div class="chip" data-filter="notes" onclick="setNoteFilter('notes')">Notes</div>
+          <div class="chip" data-filter="pyq" onclick="setNoteFilter('pyq')">PYQs</div>
+          <div class="chip" data-filter="math" onclick="setNoteFilter('math')">Mathematics</div>
+          <div class="chip" data-filter="physics" onclick="setNoteFilter('physics')">Physics</div>
+          <div class="chip" data-filter="cs" onclick="setNoteFilter('cs')">Computer Science</div>
+        </div>
+
+        <div class="notes-grid" id="notesGrid"></div>
+      </div>
+    </div>
+
+    <!-- Events Module -->
+    <div id="eventsModule" class="container hidden">
+      <div class="module-container">
+        <div class="module-header">
+          <h2 class="module-title">🎉 Event Management</h2>
+          <button class="btn btn-back" onclick="showDashboard()">← Back</button>
+        </div>
+
+        <button class="btn btn-primary" onclick="openEventModal()" style="margin-bottom: 1.5rem;">+ Create Event</button>
+
+        <div id="eventsGrid"></div>
+      </div>
+    </div>
+
+    <!-- Health Module -->
+    <div id="healthModule" class="container hidden">
+      <div class="module-container">
+        <div class="module-header">
+          <h2 class="module-title">❤️ Health Tracker</h2>
+          <button class="btn btn-back" onclick="showDashboard()">← Back</button>
+        </div>
+
+        <div class="health-grid">
+          <div class="health-card">
+            <h4>💧 Water Intake</h4>
+            <p style="color: var(--text-light); margin-bottom: 1rem;">Daily Goal: 8 glasses (2L)</p>
+            <div class="progress-bar">
+              <div class="progress-fill" id="waterProgress" style="width: 0%">0/8</div>
+            </div>
+            <div style="display: flex; gap: 0.5rem; margin-top: 1rem;">
+              <button class="btn btn-primary btn-small" onclick="addWater()">+ Add Glass</button>
+              <button class="btn btn-secondary btn-small" onclick="resetWater()">Reset</button>
+            </div>
+          </div>
+
+          <div class="health-card">
+            <h4>🍎 Meal Tracker</h4>
+            <div class="form-group">
+              <label>Log Meal</label>
+              <input type="text" id="mealInput" class="form-input" placeholder="What did you eat?">
+            </div>
+            <button class="btn btn-primary btn-small" onclick="logMeal()">Log Meal</button>
+            <div id="mealList" style="margin-top: 1rem;"></div>
+          </div>
+
+          <div class="health-card">
+            <h4>😌 Stress Level</h4>
+            <p style="color: var(--text-light); margin-bottom: 1rem;">How are you feeling today?</p>
+            <div style="display: flex; gap: 0.5rem; flex-wrap: wrap;">
+              <button class="chip" onclick="logStress(1)">😊 Great</button>
+              <button class="chip" onclick="logStress(2)">🙂 Good</button>
+              <button class="chip" onclick="logStress(3)">😐 Okay</button>
+              <button class="chip" onclick="logStress(4)">😟 Stressed</button>
+              <button class="chip" onclick="logStress(5)">😰 Very Stressed</button>
+            </div>
+            <div id="stressChart" style="margin-top: 1rem; min-height: 150px;"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Utilities Module -->
+    <div id="utilitiesModule" class="container hidden">
+      <div class="module-container">
+        <div class="module-header">
+          <h2 class="module-title">⏰ Utilities</h2>
+          <button class="btn btn-back" onclick="showDashboard()">← Back</button>
+        </div>
+
+        <div class="utility-grid">
+          <div class="utility-card">
+            <h3>⏰ Alarm</h3>
+            <input type="time" id="alarmTime" class="form-input" style="margin: 1rem 0;">
+            <button class="btn btn-primary btn-small" onclick="setAlarm()">Set Alarm</button>
+            <div id="alarmList" style="margin-top: 1rem;"></div>
+          </div>
+
+          <div class="utility-card">
+            <h3>⏱️ Timer</h3>
+            <div class="utility-display" id="timerDisplay">00:00</div>
+            <div class="form-group">
+              <input type="number" id="timerMinutes" class="form-input" placeholder="Minutes" min="1">
+            </div>
+            <div class="utility-controls">
+              <button class="btn btn-primary btn-small" onclick="startTimer()">Start</button>
+              <button class="btn btn-secondary btn-small" onclick="pauseTimer()">Pause</button>
+              <button class="btn btn-secondary btn-small" onclick="resetTimer()">Reset</button>
+            </div>
+          </div>
+
+          <div class="utility-card">
+            <h3>⏲️ Stopwatch</h3>
+            <div class="utility-display" id="stopwatchDisplay">00:00:00</div>
+            <div class="utility-controls">
+              <button class="btn btn-primary btn-small" onclick="startStopwatch()">Start</button>
+              <button class="btn btn-secondary btn-small" onclick="pauseStopwatch()">Pause</button>
+              <button class="btn btn-secondary btn-small" onclick="resetStopwatch()">Reset</button>
+            </div>
+          </div>
+
+          <div class="utility-card">
+            <h3>📝 Quick Reminders</h3>
+            <div class="form-group">
+              <input type="text" id="reminderInput" class="form-input" placeholder="Add reminder...">
+            </div>
+            <button class="btn btn-primary btn-small" onclick="addReminder()">Add</button>
+            <div id="reminderList" style="margin-top: 1rem; text-align: left;"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Timetable Module -->
+    <div id="timetableModule" class="container hidden">
+      <div class="module-container">
+        <div class="module-header">
+          <h2 class="module-title">📅 Smart Timetable</h2>
+          <button class="btn btn-back" onclick="showDashboard()">← Back</button>
+        </div>
+
+        <div style="background: var(--light-bg); padding: 1.5rem; border-radius: 12px; margin-bottom: 1.5rem;">
+          <h4 style="color: var(--primary); margin-bottom: 1rem;">🎤 Voice Assistant</h4>
+          <p style="color: var(--text-light); margin-bottom: 1rem;">Try asking: "What's my 2nd lecture today?" or "Show my schedule"</p>
+          <div style="display: flex; gap: 1rem;">
+            <button class="btn btn-primary" onclick="startTimetableVoice()">🎤 Ask Voice</button>
+            <input type="text" id="timetableQuery" class="form-input" placeholder="Type your question..." style="flex: 1;">
+            <button class="btn btn-secondary" onclick="queryTimetable()">Ask</button>
+          </div>
+          <div id="timetableResponse" style="margin-top: 1rem; padding: 1rem; background: white; border-radius: 8px; display: none;"></div>
+        </div>
+
+        <h4 style="color: var(--primary); margin-bottom: 1rem;">Weekly Schedule</h4>
+        <div id="timetableGrid" style="overflow-x: auto;"></div>
+
+        <button class="btn btn-primary" onclick="openTimetableEditor()" style="margin-top: 1.5rem;">+ Add Class</button>
+      </div>
+    </div>
+
+    <!-- Weather & Maps Module -->
+    <div id="weatherModule" class="container hidden">
+      <div class="module-container">
+        <div class="module-header">
+          <h2 class="module-title">🌤️ Weather & Maps</h2>
+          <button class="btn btn-back" onclick="showDashboard()">← Back</button>
+        </div>
+
+        <div class="health-grid">
+          <div class="health-card">
+            <h4>🌤️ Current Weather</h4>
+            <div id="weatherInfo">
+              <div style="text-align: center; padding: 2rem;">
+                <div style="font-size: 4rem;">🌤️</div>
+                <div class="utility-display" style="font-size: 2rem;">25°C</div>
+                <p style="color: var(--text-light);">Partly Cloudy</p>
+                <p style="color: var(--text-light); font-size: 0.9rem; margin-top: 0.5rem;">Mumbai, India</p>
+              </div>
+            </div>
+            <button class="btn btn-secondary btn-small" onclick="refreshWeather()">Refresh</button>
+          </div>
+
+          <div class="health-card">
+            <h4>🗺️ Campus Map</h4>
+            <div style="background: var(--light-bg); height: 300px; border-radius: 8px; display: flex; align-items: center; justify-content: center; color: var(--text-light);">
+              <div style="text-align: center;">
+                <div style="font-size: 3rem;">🗺️</div>
+                <p>Campus Map View</p>
+                <p style="font-size: 0.9rem;">(Integration with mapping service)</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Note Modal -->
+  <div class="modal" id="noteModal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3>Create Note</h3>
+        <button class="close-modal" onclick="closeNoteModal()">×</button>
+      </div>
+      <form id="noteForm">
+        <div class="form-group">
+          <label>Title</label>
+          <input type="text" id="noteTitle" class="form-input" placeholder="Note title..." required>
+        </div>
+        <div class="form-group">
+          <label>Content</label>
+          <textarea id="noteContent" class="form-input" rows="6" placeholder="Write your note..." required></textarea>
+        </div>
+        <div class="form-group">
+          <label>Subject</label>
+          <select id="noteSubject" class="form-input">
+            <option value="notes">General Notes</option>
+            <option value="pyq">PYQ</option>
+            <option value="math">Mathematics</option>
+            <option value="physics">Physics</option>
+            <option value="cs">Computer Science</option>
+            <option value="other">Other</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>Tags (comma-separated)</label>
+          <input type="text" id="noteTags" class="form-input" placeholder="important, exam, chapter1">
+        </div>
+        <div style="display: flex; gap: 1rem;">
+          <button type="submit" class="btn btn-primary">Save Note</button>
+          <button type="button" class="btn btn-secondary" onclick="closeNoteModal()">Cancel</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Event Modal -->
+  <div class="modal" id="eventModal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3>Create Event</h3>
+        <button class="close-modal" onclick="closeEventModal()">×</button>
+      </div>
+      <form id="eventForm">
+        <div class="form-group">
+          <label>Event Name</label>
+          <input type="text" id="eventName" class="form-input" placeholder="Event title..." required>
+        </div>
+        <div class="form-group">
+          <label>Description</label>
+          <textarea id="eventDesc" class="form-input" rows="3" placeholder="Event details..."></textarea>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label>Date</label>
+            <input type="date" id="eventDate" class="form-input" required>
+          </div>
+          <div class="form-group">
+            <label>Time</label>
+            <input type="time" id="eventTime" class="form-input" required>
+          </div>
+        </div>
+        <div class="form-group">
+          <label>Location</label>
+          <input type="text" id="eventLocation" class="form-input" placeholder="Event location...">
+        </div>
+        <div style="display: flex; gap: 1rem;">
+          <button type="submit" class="btn btn-primary">Create Event</button>
+          <button type="button" class="btn btn-secondary" onclick="closeEventModal()">Cancel</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <script>
+    // App State
+    const appState = {
+      user: null,
+      currentModule: 'dashboard',
+      notes: [],
+      events: [],
+      resume: {},
+      health: {
+        water: 0,
+        meals: [],
+        stress: []
+      },
+      timetable: [],
+      voiceRecognition: null,
+      timerInterval: null,
+      stopwatchInterval: null,
+      alarms: []
+    };
+
+    // IndexedDB Setup
+    let db;
+    const dbName = 'OneStopHubDB';
+    const dbVersion = 1;
+
+    function initDB() {
+      const request = indexedDB.open(dbName, dbVersion);
+      
+      request.onerror = () => {
+        console.error('Database failed to open');
+      };
+      
+      request.onsuccess = () => {
+        db = request.result;
+        loadOfflineData();
+      };
+      
+      request.onupgradeneeded = (e) => {
+        db = e.target.result;
+        
+        if (!db.objectStoreNames.contains('notes')) {
+          db.createObjectStore('notes', { keyPath: 'id', autoIncrement: true });
+        }
+        if (!db.objectStoreNames.contains('events')) {
+          db.createObjectStore('events', { keyPath: 'id', autoIncrement: true });
+        }
+        if (!db.objectStoreNames.contains('resume')) {
+          db.createObjectStore('resume', { keyPath: 'id' });
+        }
+        if (!db.objectStoreNames.contains('health')) {
+          db.createObjectStore('health', { keyPath: 'date' });
+        }
+        if (!db.objectStoreNames.contains('timetable')) {
+          db.createObjectStore('timetable', { keyPath: 'id', autoIncrement: true });
+        }
+      };
+    }
+
+    function saveToIndexedDB(storeName, data) {
+      if (!db) return;
+      const transaction = db.transaction([storeName], 'readwrite');
+      const store = transaction.objectStore(storeName);
+      store.put(data);
+    }
+
+    function loadFromIndexedDB(storeName, callback) {
+      if (!db) return;
+      const transaction = db.transaction([storeName], 'readonly');
+      const store = transaction.objectStore(storeName);
+      const request = store.getAll();
+      
+      request.onsuccess = () => {
+        callback(request.result);
+      };
+    }
+
+    function loadOfflineData() {
+      loadFromIndexedDB('notes', (data) => {
+        appState.notes = data || [];
+        if (appState.currentModule === 'notes') renderNotes();
+      });
+      
+      loadFromIndexedDB('events', (data) => {
+        appState.events = data || [];
+        if (appState.currentModule === 'events') renderEvents();
+      });
+      
+      loadFromIndexedDB('timetable', (data) => {
+        appState.timetable = data || initializeTimetable();
+        if (appState.currentModule === 'timetable') renderTimetable();
+      });
+    }
+
+    // Authentication
+    document.getElementById('authForm').addEventListener('submit', (e) => {
+      e.preventDefault();
+      const email = document.getElementById('authEmail').value;
+      const password = document.getElementById('authPassword').value;
+      
+      // Simulate authentication
+      showLoading();
+      setTimeout(() => {
+        appState.user = { email, name: email.split('@')[0] };
+        hideLoading();
+        showToast('Welcome back! 🎉');
+        showMainApp();
+      }, 1000);
+    });
+
+    function googleSignIn() {
+      showToast('Google Sign-In integration ready');
+      appState.user = { email: 'student@gmail.com', name: 'Student' };
+      showMainApp();
+    }
+
+    function logout() {
+      appState.user = null;
+      document.getElementById('mainApp').classList.add('hidden');
+      document.getElementById('authScreen').classList.remove('hidden');
+      showToast('Logged out successfully');
+    }
+
+    function showMainApp() {
+      document.getElementById('authScreen').classList.add('hidden');
+      document.getElementById('mainApp').classList.remove('hidden');
+      initDB();
+    }
+
+    // Navigation
+    function showDashboard() {
+      hideAllModules();
+      document.getElementById('dashboard').classList.remove('hidden');
+      appState.currentModule = 'dashboard';
+      closeMenu();
+    }
+
+    function showModule(moduleName) {
+      hideAllModules();
+      document.getElementById(moduleName + 'Module').classList.remove('hidden');
+      appState.currentModule = moduleName;
+      
+      switch(moduleName) {
+        case 'notes':
+          renderNotes();
+          break;
+        case 'events':
+          renderEvents();
+          break;
+        case 'timetable':
+          renderTimetable();
+          break;
+        case 'health':
+          renderHealth();
+          break;
+      }
+    }
+
+    function hideAllModules() {
+      const modules = ['dashboard', 'resumeModule', 'notesModule', 'eventsModule', 
+                      'healthModule', 'utilitiesModule', 'timetableModule', 'weatherModule'];
+      modules.forEach(m => {
+        document.getElementById(m).classList.add('hidden');
+      });
+    }
+
+    function toggleMenu() {
+      document.getElementById('navMenu').classList.toggle('active');
+    }
+
+    function closeMenu() {
+      document.getElementById('navMenu').classList.remove('active');
+    }
+
+    function showProfile() {
+      showToast('Profile feature coming soon!');
+      closeMenu();
+    }
+
+    // UI Helpers
+    function showLoading() {
+      document.getElementById('loading').classList.add('active');
+    }
+
+    function hideLoading() {
+      document.getElementById('loading').classList.remove('active');
+    }
+
+    function showToast(message) {
+      const toast = document.getElementById('toast');
+      toast.textContent = message;
+      toast.classList.add('active');
+      setTimeout(() => {
+        toast.classList.remove('active');
+      }, 3000);
+    }
+
+    // Voice Recognition Setup
+    function initVoiceRecognition() {
+      if ('webkitSpeechRecognition' in window || 'SpeechRecognition' in window) {
+        const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+        appState.voiceRecognition = new SpeechRecognition();
+        appState.voiceRecognition.continuous = false;
+        appState.voiceRecognition.interimResults = false;
+        appState.voiceRecognition.lang = 'en-US';
+        return true;
+      }
+      return false;
+    }
+
+    function startVoiceInput(targetId) {
+      if (!appState.voiceRecognition && !initVoiceRecognition()) {
+        showToast('Voice input not supported in this browser');
+        return;
+      }
+
+      const btn = event.target;
+      btn.classList.add('recording');
+      
+      appState.voiceRecognition.start();
+      
+      appState.voiceRecognition.onresult = (event) => {
+        const transcript = event.results[0][0].transcript;
+        document.getElementById(targetId).value = transcript;
+        btn.classList.remove('recording');
+      };
+      
+      appState.voiceRecognition.onerror = () => {
+        btn.classList.remove('recording');
+        showToast('Voice input error');
+      };
+      
+      appState.voiceRecognition.onend = () => {
+        btn.classList.remove('recording');
+      };
+    }
+
+    // Resume Builder
+    let educationCount = 0;
+    let experienceCount = 0;
+
+    function addEducation() {
+      educationCount++;
+      const html = `
+        <div class="form-group" style="background: white; padding: 1rem; border-radius: 8px; margin-bottom: 1rem;">
+          <div class="form-row">
+            <input type="text" placeholder="Degree" class="form-input" id="edu-degree-${educationCount}">
+            <input type="text" placeholder="Institution" class="form-input" id="edu-institution-${educationCount}">
+          </div>
+          <div class="form-row">
+            <input type="text" placeholder="Year" class="form-input" id="edu-year-${educationCount}">
+            <input type="text" placeholder="Grade/GPA" class="form-input" id="edu-grade-${educationCount}">
+          </div>
+        </div>
+      `;
+      document.getElementById('educationList').insertAdjacentHTML('beforeend', html);
+    }
+
+    function addExperience() {
+      experienceCount++;
+      const html = `
+        <div class="form-group" style="background: white; padding: 1rem; border-radius: 8px; margin-bottom: 1rem;">
+          <div class="form-row">
+            <input type="text" placeholder="Job Title" class="form-input" id="exp-title-${experienceCount}">
+            <input type="text" placeholder="Company" class="form-input" id="exp-company-${experienceCount}">
+          </div>
+          <div class="form-row">
+            <input type="text" placeholder="Duration" class="form-input" id="exp-duration-${experienceCount}">
+          </div>
+          <textarea placeholder="Description" class="form-input" rows="2" id="exp-desc-${experienceCount}"></textarea>
+        </div>
+      `;
+      document.getElementById('experienceList').insertAdjacentHTML('beforeend', html);
+    }
+
+    function generateResumePreview() {
+      const name = document.getElementById('resumeName').value;
+      const email = document.getElementById('resumeEmail').value;
+      const phone = document.getElementById('resumePhone').value;
+      const location = document.getElementById('resumeLocation').value;
+      const summary = document.getElementById('resumeSummary').value;
+      const skills = document.getElementById('resumeSkills').value;
+
+      if (!name) {
+        showToast('Please enter your name');
+        return;
+      }
+
+      let preview = `
+        <div style="text-align: center; margin-bottom: 2rem;">
+          <h2 style="color: var(--primary); font-size: 2rem; margin-bottom: 0.5rem;">${name}</h2>
+          <p style="color: var(--text-light);">${email} | ${phone} | ${location}</p>
+        </div>
+      `;
+
+      if (summary) {
+        preview += `
+          <div style="margin-bottom: 1.5rem;">
+            <h3 style="color: var(--primary); border-bottom: 2px solid var(--primary); padding-bottom: 0.5rem;">Professional Summary</h3>
+            <p style="margin-top: 0.5rem;">${summary}</p>
+          </div>
+        `;
+      }
+
+      if (skills) {
+        preview += `
+          <div style="margin-bottom: 1.5rem;">
+            <h3 style="color: var(--primary); border-bottom: 2px solid var(--primary); padding-bottom: 0.5rem;">Skills</h3>
+            <p style="margin-top: 0.5rem;">${skills}</p>
+          </div>
+        `;
+      }
+
+      document.getElementById('resumePreviewContent').innerHTML = preview;
+      document.getElementById('resumePreview').classList.remove('hidden');
+      showToast('Preview generated!');
+    }
+
+    function exportResumePDF() {
+      showToast('PDF export feature ready! (Integration with jsPDF library)');
+    }
+
+    function saveResume() {
+      const resumeData = {
+        id: 'resume-1',
+        name: document.getElementById('resumeName').value,
+        email: document.getElementById('resumeEmail').value,
+        phone: document.getElementById('resumePhone').value,
+        location: document.getElementById('resumeLocation').value,
+        summary: document.getElementById('resumeSummary').value,
+        skills: document.getElementById('resumeSkills').value,
+        updatedAt: new Date().toISOString()
+      };
+      
+      saveToIndexedDB('resume', resumeData);
+      showToast('Resume saved successfully! 💾');
+    }
+
+    // Notes & PYQ
+    function openNoteModal() {
+      document.getElementById('noteModal').classList.add('active');
+    }
+
+    function closeNoteModal() {
+      document.getElementById('noteModal').classList.remove('active');
+      document.getElementById('noteForm').reset();
+    }
+
+    document.getElementById('noteForm').addEventListener('submit', (e) => {
+      e.preventDefault();
+      
+      const note = {
+        id: Date.now(),
+        title: document.getElementById('noteTitle').value,
+        content: document.getElementById('noteContent').value,
+        subject: document.getElementById('noteSubject').value,
+        tags: document.getElementById('noteTags').value.split(',').map(t => t.trim()).filter(t => t),
+        createdAt: new Date().toISOString()
+      };
+      
+      appState.notes.push(note);
+      saveToIndexedDB('notes', note);
+      renderNotes();
+      closeNoteModal();
+      showToast('Note saved! 📝');
+    });
+
+    function renderNotes() {
+      const grid = document.getElementById('notesGrid');
+      if (appState.notes.length === 0) {
+        grid.innerHTML = '<p style="text-align: center; color: var(--text-light); padding: 2rem;">No notes yet. Create your first note!</p>';
+        return;
+      }
+      
+      grid.innerHTML = appState.notes.map(note => `
+        <div class="note-card">
+          <div class="note-header">
+            <div class="note-title">${note.title}</div>
+            <div class="note-actions">
+              <button class="icon-btn" onclick="editNote(${note.id})">✏️</button>
+              <button class="icon-btn" onclick="deleteNote(${note.id})">🗑️</button>
+            </div>
+          </div>
+          <div class="note-content">${note.content.substring(0, 150)}${note.content.length > 150 ? '...' : ''}</div>
+          <div class="note-tags">
+            ${note.tags.map(tag => `<span class="tag">${tag}</span>`).join('')}
+          </div>
+        </div>
+      `).join('');
+    }
+
+    function deleteNote(id) {
+      if (confirm('Delete this note?')) {
+        appState.notes = appState.notes.filter(n => n.id !== id);
+        renderNotes();
+        showToast('Note deleted');
+      }
+    }
+
+    function setNoteFilter(filter) {
+      document.querySelectorAll('#notesFilters .chip').forEach(chip => {
+        chip.classList.remove('active');
+      });
+      event.target.classList.add('active');
+      
+      // Filter logic would go here
+      showToast(`Filtering by: ${filter}`);
+    }
+
+    function filterNotes() {
+      const query = document.getElementById('notesSearch').value.toLowerCase();
+      // Search logic would go here
+    }
+
+    // Events
+    function openEventModal() {
+      document.getElementById('eventModal').classList.add('active');
+    }
+
+    function closeEventModal() {
+      document.getElementById('eventModal').classList.remove('active');
+      document.getElementById('eventForm').reset();
+    }
+
+    document.getElementById('eventForm').addEventListener('submit', (e) => {
+      e.preventDefault();
+      
+      const event = {
+        id: Date.now(),
+        name: document.getElementById('eventName').value,
+        description: document.getElementById('eventDesc').value,
+        date: document.getElementById('eventDate').value,
+        time: document.getElementById('eventTime').value,
+        location: document.getElementById('eventLocation').value,
+        rsvp: []
+      };
+      
+      appState.events.push(event);
+      saveToIndexedDB('events', event);
+      renderEvents();
+      closeEventModal();
+      showTo

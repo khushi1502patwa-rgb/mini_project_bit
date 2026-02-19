@@ -1,0 +1,196 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>One Stop | Student Portal</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --primary: #0077b6;
+      --accent: #90e0ef;
+      --dark: #023e8a;
+      --light-bg: #f8f9fa;
+      --text: #333;
+      --white: #ffffff;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--light-bg);
+      color: var(--text);
+    }
+
+    header {
+      background: linear-gradient(to right, var(--primary), var(--dark));
+      color: white;
+      padding: 40px 0;
+      text-align: center;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    header h1 {
+      font-size: 3rem;
+      font-weight: 800;
+    }
+
+    .tagline {
+      font-size: 1.2rem;
+      font-weight: 400;
+      margin-top: 10px;
+      color: #e0f7ff;
+    }
+
+    .main {
+      max-width: 1200px;
+      margin: 40px auto;
+      padding: 0 20px;
+    }
+
+    .section-title {
+      text-align: center;
+      font-size: 2rem;
+      margin-bottom: 30px;
+      color: var(--primary);
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+      gap: 25px;
+    }
+
+    .card {
+      background-color: var(--white);
+      padding: 25px;
+      border-radius: 12px;
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.06);
+      text-align: center;
+      transition: transform 0.2s ease, box-shadow 0.3s ease;
+      cursor: pointer;
+      border-left: 6px solid var(--primary);
+    }
+
+    .card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 24px rgba(0, 0, 0, 0.1);
+      background: var(--accent);
+    }
+
+    .card h3 {
+      font-size: 1.2rem;
+      margin-bottom: 10px;
+      color: var(--primary);
+    }
+
+    .card p {
+      font-size: 0.95rem;
+      color: #444;
+    }
+
+    footer {
+      background: var(--dark);
+      color: white;
+      text-align: center;
+      padding: 20px;
+      margin-top: 40px;
+      font-size: 0.9rem;
+    }
+
+    @media (max-width: 600px) {
+      header h1 {
+        font-size: 2.2rem;
+      }
+
+      .section-title {
+        font-size: 1.5rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>ONE STOP HUB</h1>
+    <P>everything is here</P>
+    <p class="tagline">All-in-One Student Portal — Fast. Simple. Useful.</p>
+  </header>
+
+  <main class="main">
+    <h2 class="section-title">Explore Tools</h2>
+    <div class="grid">
+      <div class="card" onclick="location.href='resume.html'">
+        <h3>📝 Resume Builder</h3>
+        <p>Create resumes easily with photo & templates.</p>
+      </div>
+
+      <div class="card" onclick="alert('Coming Soon')">
+        <h3>📚 PYQs</h3>
+        <p>Access previous year question papers anytime.</p>
+      </div>
+
+      <div class="card" onclick="alert('Coming Soon')">
+        <h3>🎉 Event Management</h3>
+        <p>Track and manage college events smoothly.</p>
+      </div>
+
+      <div class="card" onclick="alert('Coming Soon')">
+        <h3>⏰ Alarm Setter</h3>
+        <p>Set study alarms and get notified.</p>
+      </div>
+
+      <div class="card" onclick="alert('Coming Soon')">
+        <h3>🗓️ Academic Calendar</h3>
+        <p>Semester & exam schedule at your fingertips.</p>
+      </div>
+
+      <div class="card" onclick="alert('Coming Soon')">
+        <h3>📖 Notes</h3>
+        <p>Find topic-wise handwritten or digital notes.</p>
+      </div>
+
+      <div class="card" onclick="alert('Coming Soon')">
+        <h3>🏫 College Events</h3>
+        <p>College-wide events for students and staff.</p>
+      </div>
+
+      <div class="card" onclick="alert('Coming Soon')">
+        <h3>❤️ Student Healthcare</h3>
+        <p>Access mental health & physical wellness resources.</p>
+      </div>
+
+      <div class="card" onclick="alert('Coming Soon')">
+        <h3>📚 Library Management</h3>
+        <p>Check book availability and borrowing records.</p>
+      </div>
+
+      <div class="card" onclick="alert('Coming Soon')">
+        <h3>🚌 Bus Management</h3>
+        <p>Track college bus routes and timings.</p>
+      </div>
+
+      <div class="card" onclick="alert('Coming Soon')">
+        <h3>🕒 Study Timetable</h3>
+        <p>Plan your weekly or daily academic schedule.</p>
+      </div>
+
+      <div class="card" onclick="alert('Coming Soon')">
+        <h3>➕ More Features</h3>
+        <p>We are adding more tools for you. Stay tuned!</p>
+      </div>
+    </div>
+  </main>
+
+  <footer>
+    © 2025 One Stop | Designed with 💙 for College Students
+  </footer>
+
+</body>
+</html>
